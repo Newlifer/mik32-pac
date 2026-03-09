@@ -11,5 +11,7 @@ get-tools:
 build:
     echo "Building the project..."
     svd2rust -i ./misc/mik32v2.svd --target riscv
-    form -i ./misc/lib.rs -o ./src/
+    form -i ./lib.rs -o ./src/
     cargo fmt
+    rm lib.rs
+    rm build.rs

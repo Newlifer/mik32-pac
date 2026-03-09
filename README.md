@@ -21,8 +21,10 @@ rustup component add rustfmt
 
 # Build PAC
 svd2rust -i ./misc/mik32v2.svd --target riscv
-form -i ./misc/lib.rs -o ./src/
+form -i ./lib.rs -o ./src/
 cargo fmt
+rm lib.rs
+rm build.rs
 ```
 
 # License
