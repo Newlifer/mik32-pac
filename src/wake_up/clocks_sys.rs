@@ -122,8 +122,8 @@ pub enum Force32kClk {
     Lsi32k = 1,
     #[doc = "2: Принудительно выбран OSC32K"]
     Osc32k = 2,
-    #[doc = "3: Автоматический выбор"]
-    Automatic = 3,
+    // #[doc = "3: Автоматический выбор"]
+    // Automatic = 3,
 }
 impl From<Force32kClk> for u8 {
     #[inline(always)]
@@ -164,11 +164,6 @@ impl Force32kClkR {
     pub fn is_osc32k(&self) -> bool {
         *self == Force32kClk::Osc32k
     }
-    #[doc = "Автоматический выбор"]
-    #[inline(always)]
-    pub fn is_automatic(&self) -> bool {
-        *self == Force32kClk::Automatic
-    }
 }
 #[doc = "Field `FORCE_32K_CLK` writer - Принудительное переключение на опорный источник для монитора частоты"]
 pub type Force32kClkW<'a, REG> = crate::FieldWriter<'a, REG, 2, Force32kClk, crate::Safe>;
@@ -191,11 +186,6 @@ where
     #[inline(always)]
     pub fn osc32k(self) -> &'a mut crate::W<REG> {
         self.variant(Force32kClk::Osc32k)
-    }
-    #[doc = "Автоматический выбор"]
-    #[inline(always)]
-    pub fn automatic(self) -> &'a mut crate::W<REG> {
-        self.variant(Force32kClk::Automatic)
     }
 }
 impl R {
