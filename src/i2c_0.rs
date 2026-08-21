@@ -9,6 +9,7 @@ pub struct RegisterBlock {
     _reserved5: [u8; 0x04],
     isr: Isr,
     icr: Icr,
+    _reserved7: [u8; 0x04],
     rxdr: Rxdr,
     txdr: Txdr,
 }
@@ -48,12 +49,12 @@ impl RegisterBlock {
     pub const fn icr(&self) -> &Icr {
         &self.icr
     }
-    #[doc = "0x20 - Регистр принятых данных"]
+    #[doc = "0x24 - Регистр принятых данных"]
     #[inline(always)]
     pub const fn rxdr(&self) -> &Rxdr {
         &self.rxdr
     }
-    #[doc = "0x24 - Регистр передаваемых данных"]
+    #[doc = "0x28 - Регистр передаваемых данных"]
     #[inline(always)]
     pub const fn txdr(&self) -> &Txdr {
         &self.txdr

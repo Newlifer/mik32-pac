@@ -21597,7 +21597,7 @@ RXDR или аппаратно при PE=0.
         <register>
           <name>RXDR</name>
           <description>Регистр принятых данных</description>
-          <addressOffset>0x20</addressOffset>
+          <addressOffset>0x24</addressOffset>
           <access>read-only</access>
           <resetValue>0x00</resetValue>
           <resetMask>0xFFFFFFFF</resetMask>
@@ -21613,7 +21613,7 @@ RXDR или аппаратно при PE=0.
         <register>
           <name>TXDR</name>
           <description>Регистр передаваемых данных</description>
-          <addressOffset>0x24</addressOffset>
+          <addressOffset>0x28</addressOffset>
           <access>read-write</access>
           <resetValue>0x00</resetValue>
           <resetMask>0xFFFFFFFF</resetMask>
@@ -22565,7 +22565,7 @@ RXDR или аппаратно при PE=0.
         <register>
           <name>RXDR</name>
           <description>Регистр принятых данных</description>
-          <addressOffset>0x20</addressOffset>
+          <addressOffset>0x24</addressOffset>
           <access>read-only</access>
           <resetValue>0x00</resetValue>
           <resetMask>0xFFFFFFFF</resetMask>
@@ -22581,7 +22581,7 @@ RXDR или аппаратно при PE=0.
         <register>
           <name>TXDR</name>
           <description>Регистр передаваемых данных</description>
-          <addressOffset>0x24</addressOffset>
+          <addressOffset>0x28</addressOffset>
           <access>read-write</access>
           <resetValue>0x00</resetValue>
           <resetMask>0xFFFFFFFF</resetMask>
