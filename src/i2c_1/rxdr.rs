@@ -1,12 +1,12 @@
 #[doc = "Register `RXDR` reader"]
 pub type R = crate::R<RxdrSpec>;
-#[doc = "Field `TXDATA` reader - Буфер принятых данных"]
-pub type TxdataR = crate::FieldReader;
+#[doc = "Field `RXDATA` reader - Буфер принятых данных"]
+pub type RxdataR = crate::FieldReader;
 impl R {
     #[doc = "Bits 0:7 - Буфер принятых данных"]
     #[inline(always)]
-    pub fn txdata(&self) -> TxdataR {
-        TxdataR::new((self.bits & 0xff) as u8)
+    pub fn rxdata(&self) -> RxdataR {
+        RxdataR::new((self.bits & 0xff) as u8)
     }
 }
 #[doc = "Регистр принятых данных\n\nYou can [`read`](crate::Reg::read) this register and get [`rxdr::R`](R). See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

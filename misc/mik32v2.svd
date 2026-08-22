@@ -21603,7 +21603,7 @@ RXDR или аппаратно при PE=0.
           <resetMask>0xFFFFFFFF</resetMask>
           <fields>
             <field>
-              <name>TXDATA</name>
+              <name>RXDATA</name>
               <description>Буфер принятых данных</description>
               <bitRange>[7:0]</bitRange>
               <access>read-only</access>
@@ -22571,7 +22571,7 @@ RXDR или аппаратно при PE=0.
           <resetMask>0xFFFFFFFF</resetMask>
           <fields>
             <field>
-              <name>TXDATA</name>
+              <name>RXDATA</name>
               <description>Буфер принятых данных</description>
               <bitRange>[7:0]</bitRange>
               <access>read-only</access>
