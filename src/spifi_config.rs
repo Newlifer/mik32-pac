@@ -6,7 +6,7 @@ pub struct RegisterBlock {
     address: Address,
     idata: Idata,
     climit: Climit,
-    data: Data,
+    _reserved_5_data8: [u8; 0x04],
     mcmd: Mcmd,
     stat: Stat,
 }
@@ -36,10 +36,20 @@ impl RegisterBlock {
     pub const fn climit(&self) -> &Climit {
         &self.climit
     }
-    #[doc = "0x14 - SPIFI регистр данных. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 “Load access fault”)."]
+    #[doc = "0x14 - SPIFI регистр данных, 32-битный доступ. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 \"Load access fault\")."]
     #[inline(always)]
-    pub const fn data(&self) -> &Data {
-        &self.data
+    pub const fn data32(&self) -> &Data32 {
+        unsafe { &*core::ptr::from_ref(self).cast::<u8>().add(20).cast() }
+    }
+    #[doc = "0x14 - SPIFI регистр данных, 16-битный доступ. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 \"Load access fault\")."]
+    #[inline(always)]
+    pub const fn data16(&self) -> &Data16 {
+        unsafe { &*core::ptr::from_ref(self).cast::<u8>().add(20).cast() }
+    }
+    #[doc = "0x14 - SPIFI регистр данных, 8-битный доступ. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 \"Load access fault\")."]
+    #[inline(always)]
+    pub const fn data8(&self) -> &Data8 {
+        unsafe { &*core::ptr::from_ref(self).cast::<u8>().add(20).cast() }
     }
     #[doc = "0x18 - SPIFI регистр команд памяти"]
     #[inline(always)]
@@ -77,11 +87,21 @@ pub mod idata;
 pub type Climit = crate::Reg<climit::ClimitSpec>;
 #[doc = "SPIFI регистр верхней границы адреса кеширования"]
 pub mod climit;
-#[doc = "DATA (rw) register accessor: SPIFI регистр данных. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 “Load access fault”).\n\nYou can [`read`](crate::Reg::read) this register and get [`data::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`data::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [`mod@data`] module"]
-#[doc(alias = "DATA")]
-pub type Data = crate::Reg<data::DataSpec>;
-#[doc = "SPIFI регистр данных. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 “Load access fault”)."]
-pub mod data;
+#[doc = "DATA8 (rw) register accessor: SPIFI регистр данных, 8-битный доступ. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 \"Load access fault\").\n\nYou can [`read`](crate::Reg::read) this register and get [`data8::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`data8::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [`mod@data8`] module"]
+#[doc(alias = "DATA8")]
+pub type Data8 = crate::Reg<data8::Data8Spec>;
+#[doc = "SPIFI регистр данных, 8-битный доступ. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 \"Load access fault\")."]
+pub mod data8;
+#[doc = "DATA16 (rw) register accessor: SPIFI регистр данных, 16-битный доступ. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 \"Load access fault\").\n\nYou can [`read`](crate::Reg::read) this register and get [`data16::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`data16::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [`mod@data16`] module"]
+#[doc(alias = "DATA16")]
+pub type Data16 = crate::Reg<data16::Data16Spec>;
+#[doc = "SPIFI регистр данных, 16-битный доступ. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 \"Load access fault\")."]
+pub mod data16;
+#[doc = "DATA32 (rw) register accessor: SPIFI регистр данных, 32-битный доступ. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 \"Load access fault\").\n\nYou can [`read`](crate::Reg::read) this register and get [`data32::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`data32::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [`mod@data32`] module"]
+#[doc(alias = "DATA32")]
+pub type Data32 = crate::Reg<data32::Data32Spec>;
+#[doc = "SPIFI регистр данных, 32-битный доступ. Если выходной буфер чтения пуст или входной буфер записи полон, то при отправке запроса по шине AHB будет вызвано исключение (код 5 \"Load access fault\")."]
+pub mod data32;
 #[doc = "MCMD (rw) register accessor: SPIFI регистр команд памяти\n\nYou can [`read`](crate::Reg::read) this register and get [`mcmd::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`mcmd::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [`mod@mcmd`] module"]
 #[doc(alias = "MCMD")]
 pub type Mcmd = crate::Reg<mcmd::McmdSpec>;
