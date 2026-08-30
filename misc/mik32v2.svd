@@ -6603,24 +6603,29 @@ FAPB/( Div_APM_P+1)</description>
           <resetMask>0x0</resetMask>
           <fields>
             <field>
-              <name>SOURSE</name>
-              <description>Выбор источника тактового сигнала для счета</description>
+              <name>SOURCE</name>
+              <description>Выбор источника тактового сигнала для счёта</description>
               <bitRange>[3:2]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
                 <enumeratedValue>
+                  <name>PRESCALER</name>
+                  <description>Выход предделителя</description>
+                  <value>0b00</value>
+                </enumeratedValue>
+                <enumeratedValue>
                   <name>TIM1</name>
                   <description>Вход модуля TIM1</description>
-                  <value>0b00</value>
+                  <value>0b01</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>TX_PIN</name>
+                  <description>Внешний вход TX</description>
+                  <value>0b10</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>TIM2</name>
                   <description>Вход модуля TIM2</description>
-                  <value>0b10</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>TIM3</name>
-                  <description>Выход предделителя</description>
                   <value>0b11</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -17429,24 +17434,29 @@ ARR - значение автозагрузки для TIMER16.  Это знач
           <resetValue>0x0</resetValue>
           <fields>
             <field>
-              <name>SOURSE</name>
-              <description>Выбор источника тактового сигнала для счета</description>
+              <name>SOURCE</name>
+              <description>Выбор источника тактового сигнала для счёта</description>
               <bitRange>[3:2]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
                 <enumeratedValue>
+                  <name>PRESCALER</name>
+                  <description>Выход предделителя</description>
+                  <value>0b00</value>
+                </enumeratedValue>
+                <enumeratedValue>
                   <name>TIM1</name>
                   <description>Вход модуля TIM1</description>
-                  <value>0b00</value>
+                  <value>0b01</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>TX_PIN</name>
+                  <description>Внешний вход TX</description>
+                  <value>0b10</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>TIM2</name>
                   <description>Вход модуля TIM2</description>
-                  <value>0b10</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>TIM3</name>
-                  <description>Выход предделителя</description>
                   <value>0b11</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -18363,24 +18373,29 @@ ARR - значение автозагрузки для TIMER16.  Это знач
           <resetValue>0x0</resetValue>
           <fields>
             <field>
-              <name>SOURSE</name>
-              <description>Выбор источника тактового сигнала для счета</description>
+              <name>SOURCE</name>
+              <description>Выбор источника тактового сигнала для счёта</description>
               <bitRange>[3:2]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
                 <enumeratedValue>
+                  <name>PRESCALER</name>
+                  <description>Выход предделителя</description>
+                  <value>0b00</value>
+                </enumeratedValue>
+                <enumeratedValue>
                   <name>TIM1</name>
                   <description>Вход модуля TIM1</description>
-                  <value>0b00</value>
+                  <value>0b01</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>TX_PIN</name>
+                  <description>Внешний вход TX</description>
+                  <value>0b10</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>TIM2</name>
                   <description>Вход модуля TIM2</description>
-                  <value>0b10</value>
-                </enumeratedValue>
-                <enumeratedValue>
-                  <name>TIM3</name>
-                  <description>Выход предделителя</description>
                   <value>0b11</value>
                 </enumeratedValue>
               </enumeratedValues>

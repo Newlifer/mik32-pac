@@ -75,77 +75,90 @@ where
         self.variant(CountMode::Bidirectional)
     }
 }
-#[doc = "Выбор источника тактового сигнала для счета\n\nValue on reset: 0"]
+#[doc = "Выбор источника тактового сигнала для счёта\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 #[repr(u8)]
-pub enum Sourse {
-    #[doc = "0: Вход модуля TIM1"]
-    Tim1 = 0,
-    #[doc = "2: Вход модуля TIM2"]
-    Tim2 = 2,
-    #[doc = "3: Выход предделителя"]
-    Tim3 = 3,
+pub enum Source {
+    #[doc = "0: Выход предделителя"]
+    Prescaler = 0,
+    #[doc = "1: Вход модуля TIM1"]
+    Tim1 = 1,
+    #[doc = "2: Внешний вход TX"]
+    TxPin = 2,
+    #[doc = "3: Вход модуля TIM2"]
+    Tim2 = 3,
 }
-impl From<Sourse> for u8 {
+impl From<Source> for u8 {
     #[inline(always)]
-    fn from(variant: Sourse) -> Self {
+    fn from(variant: Source) -> Self {
         variant as _
     }
 }
-impl crate::FieldSpec for Sourse {
+impl crate::FieldSpec for Source {
     type Ux = u8;
 }
-impl crate::IsEnum for Sourse {}
-#[doc = "Field `SOURSE` reader - Выбор источника тактового сигнала для счета"]
-pub type SourseR = crate::FieldReader<Sourse>;
-impl SourseR {
+impl crate::IsEnum for Source {}
+#[doc = "Field `SOURCE` reader - Выбор источника тактового сигнала для счёта"]
+pub type SourceR = crate::FieldReader<Source>;
+impl SourceR {
     #[doc = "Get enumerated values variant"]
     #[inline(always)]
-    pub const fn variant(&self) -> Option<Sourse> {
+    pub const fn variant(&self) -> Source {
         match self.bits {
-            0 => Some(Sourse::Tim1),
-            2 => Some(Sourse::Tim2),
-            3 => Some(Sourse::Tim3),
-            _ => None,
+            0 => Source::Prescaler,
+            1 => Source::Tim1,
+            2 => Source::TxPin,
+            3 => Source::Tim2,
+            _ => unreachable!(),
         }
+    }
+    #[doc = "Выход предделителя"]
+    #[inline(always)]
+    pub fn is_prescaler(&self) -> bool {
+        *self == Source::Prescaler
     }
     #[doc = "Вход модуля TIM1"]
     #[inline(always)]
     pub fn is_tim1(&self) -> bool {
-        *self == Sourse::Tim1
+        *self == Source::Tim1
+    }
+    #[doc = "Внешний вход TX"]
+    #[inline(always)]
+    pub fn is_tx_pin(&self) -> bool {
+        *self == Source::TxPin
     }
     #[doc = "Вход модуля TIM2"]
     #[inline(always)]
     pub fn is_tim2(&self) -> bool {
-        *self == Sourse::Tim2
-    }
-    #[doc = "Выход предделителя"]
-    #[inline(always)]
-    pub fn is_tim3(&self) -> bool {
-        *self == Sourse::Tim3
+        *self == Source::Tim2
     }
 }
-#[doc = "Field `SOURSE` writer - Выбор источника тактового сигнала для счета"]
-pub type SourseW<'a, REG> = crate::FieldWriter<'a, REG, 2, Sourse>;
-impl<'a, REG> SourseW<'a, REG>
+#[doc = "Field `SOURCE` writer - Выбор источника тактового сигнала для счёта"]
+pub type SourceW<'a, REG> = crate::FieldWriter<'a, REG, 2, Source, crate::Safe>;
+impl<'a, REG> SourceW<'a, REG>
 where
     REG: crate::Writable + crate::RegisterSpec,
     REG::Ux: From<u8>,
 {
+    #[doc = "Выход предделителя"]
+    #[inline(always)]
+    pub fn prescaler(self) -> &'a mut crate::W<REG> {
+        self.variant(Source::Prescaler)
+    }
     #[doc = "Вход модуля TIM1"]
     #[inline(always)]
     pub fn tim1(self) -> &'a mut crate::W<REG> {
-        self.variant(Sourse::Tim1)
+        self.variant(Source::Tim1)
+    }
+    #[doc = "Внешний вход TX"]
+    #[inline(always)]
+    pub fn tx_pin(self) -> &'a mut crate::W<REG> {
+        self.variant(Source::TxPin)
     }
     #[doc = "Вход модуля TIM2"]
     #[inline(always)]
     pub fn tim2(self) -> &'a mut crate::W<REG> {
-        self.variant(Sourse::Tim2)
-    }
-    #[doc = "Выход предделителя"]
-    #[inline(always)]
-    pub fn tim3(self) -> &'a mut crate::W<REG> {
-        self.variant(Sourse::Tim3)
+        self.variant(Source::Tim2)
     }
 }
 impl R {
@@ -154,10 +167,10 @@ impl R {
     pub fn count_mode(&self) -> CountModeR {
         CountModeR::new((self.bits & 3) as u8)
     }
-    #[doc = "Bits 2:3 - Выбор источника тактового сигнала для счета"]
+    #[doc = "Bits 2:3 - Выбор источника тактового сигнала для счёта"]
     #[inline(always)]
-    pub fn sourse(&self) -> SourseR {
-        SourseR::new(((self.bits >> 2) & 3) as u8)
+    pub fn source(&self) -> SourceR {
+        SourceR::new(((self.bits >> 2) & 3) as u8)
     }
 }
 impl W {
@@ -166,10 +179,10 @@ impl W {
     pub fn count_mode(&mut self) -> CountModeW<'_, ControlSpec> {
         CountModeW::new(self, 0)
     }
-    #[doc = "Bits 2:3 - Выбор источника тактового сигнала для счета"]
+    #[doc = "Bits 2:3 - Выбор источника тактового сигнала для счёта"]
     #[inline(always)]
-    pub fn sourse(&mut self) -> SourseW<'_, ControlSpec> {
-        SourseW::new(self, 2)
+    pub fn source(&mut self) -> SourceW<'_, ControlSpec> {
+        SourceW::new(self, 2)
     }
 }
 #[doc = "Конфигурационный регистр основного таймера\n\nYou can [`read`](crate::Reg::read) this register and get [`control::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`control::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]
