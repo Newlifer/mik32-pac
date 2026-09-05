@@ -13,9 +13,9 @@ pub type CoefReficlbW<'a, REG> = crate::FieldWriter<'a, REG, 4>;
 #[doc = "Разрешение работы калибруемых источников\n\nValue on reset: 1"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum ClbEn {
-    #[doc = "0: Включить"]
+    #[doc = "0: Калибруемые источники выключены"]
     Disable = 0,
-    #[doc = "1: Выключить"]
+    #[doc = "1: Калибруемые источники включены"]
     Enable = 1,
 }
 impl From<ClbEn> for bool {
@@ -35,12 +35,12 @@ impl ClbEnR {
             true => ClbEn::Enable,
         }
     }
-    #[doc = "Включить"]
+    #[doc = "Калибруемые источники выключены"]
     #[inline(always)]
     pub fn is_disable(&self) -> bool {
         *self == ClbEn::Disable
     }
-    #[doc = "Выключить"]
+    #[doc = "Калибруемые источники включены"]
     #[inline(always)]
     pub fn is_enable(&self) -> bool {
         *self == ClbEn::Enable
@@ -52,12 +52,12 @@ impl<'a, REG> ClbEnW<'a, REG>
 where
     REG: crate::Writable + crate::RegisterSpec,
 {
-    #[doc = "Включить"]
+    #[doc = "Калибруемые источники выключены"]
     #[inline(always)]
     pub fn disable(self) -> &'a mut crate::W<REG> {
         self.variant(ClbEn::Disable)
     }
-    #[doc = "Выключить"]
+    #[doc = "Калибруемые источники включены"]
     #[inline(always)]
     pub fn enable(self) -> &'a mut crate::W<REG> {
         self.variant(ClbEn::Enable)
