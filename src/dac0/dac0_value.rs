@@ -2,19 +2,19 @@
 pub type R = crate::R<Dac0ValueSpec>;
 #[doc = "Register `DAC0_VALUE` writer"]
 pub type W = crate::W<Dac0ValueSpec>;
-#[doc = "Field `VALUE` reader - Входные данные для прерывания"]
+#[doc = "Field `VALUE` reader - 12-разрядный входной код ЦАП"]
 pub type ValueR = crate::FieldReader<u16>;
-#[doc = "Field `VALUE` writer - Входные данные для прерывания"]
+#[doc = "Field `VALUE` writer - 12-разрядный входной код ЦАП"]
 pub type ValueW<'a, REG> = crate::FieldWriter<'a, REG, 12, u16>;
 impl R {
-    #[doc = "Bits 0:11 - Входные данные для прерывания"]
+    #[doc = "Bits 0:11 - 12-разрядный входной код ЦАП"]
     #[inline(always)]
     pub fn value(&self) -> ValueR {
         ValueR::new((self.bits & 0x0fff) as u16)
     }
 }
 impl W {
-    #[doc = "Bits 0:11 - Входные данные для прерывания"]
+    #[doc = "Bits 0:11 - 12-разрядный входной код ЦАП"]
     #[inline(always)]
     pub fn value(&mut self) -> ValueW<'_, Dac0ValueSpec> {
         ValueW::new(self, 0)

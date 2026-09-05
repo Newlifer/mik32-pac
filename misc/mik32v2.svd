@@ -23059,18 +23059,25 @@ Mux_7 – [31:28]</description>
           <fields>
             <field>
               <name>EMPTY_READ</name>
-              <description>Признак заполненности регистра DAC_VALUE</description>
+              <description>
+                Состояние входного регистра DAC_VALUE.
+                Сбрасывается в 0 при записи нового значения в DAC_VALUE.
+              </description>
               <bitRange>[13:13]</bitRange>
               <access>read-only</access>
               <enumeratedValues>
                 <enumeratedValue>
                   <name>Full</name>
-                  <description>Значение, хранящееся в DAC_VALUE было сдвинуто в ЦАП, возможна запись следующего значения</description>
+                  <description>
+                    В DAC_VALUE находится необработанное значение
+                  </description>
                   <value>0b00</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>Empty</name>
-                  <description>В регистре DAC_Value находится необработанное значение. Автоматически сбрасывается при записи в DAC_Value</description>
+                  <description>
+                    Значение из DAC_VALUE передано в ЦАП, возможна запись следующего значения
+                  </description>
                   <value>0b01</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -23153,7 +23160,7 @@ Mux_7 – [31:28]</description>
           <fields>
             <field>
               <name>VALUE</name>
-              <description>Входные данные для прерывания</description>
+              <description>12-разрядный входной код ЦАП</description>
               <bitRange>[11:0]</bitRange>
               <access>read-write</access>
             </field>
@@ -23275,7 +23282,7 @@ Mux_7 – [31:28]</description>
           <fields>
             <field>
               <name>VALUE</name>
-              <description>Входные данные для прерывания</description>
+              <description>12-разрядный входной код ЦАП</description>
               <bitRange>[11:0]</bitRange>
               <access>read-write</access>
             </field>
@@ -23722,12 +23729,12 @@ Mux_7 – [31:28]</description>
               <enumeratedValues>
                 <enumeratedValue>
                   <name>Disable</name>
-                  <description>Включить</description>
+                  <description>Калибруемые источники выключены</description>
                   <value>0b00</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>Enable</name>
-                  <description>Выключить</description>
+                  <description>Калибруемые источники включены</description>
                   <value>0b01</value>
                 </enumeratedValue>
               </enumeratedValues>
