@@ -169,12 +169,12 @@ where
         self.variant(Extpad::RefDacPin)
     }
 }
-#[doc = "Признак заполненности регистра DAC_VALUE\n\nValue on reset: 0"]
+#[doc = "Состояние входного регистра DAC_VALUE. Сбрасывается в 0 при записи нового значения в DAC_VALUE.\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum EmptyRead {
-    #[doc = "0: Значение, хранящееся в DAC_VALUE было сдвинуто в ЦАП, возможна запись следующего значения"]
+    #[doc = "0: В DAC_VALUE находится необработанное значение"]
     Full = 0,
-    #[doc = "1: В регистре DAC_Value находится необработанное значение. Автоматически сбрасывается при записи в DAC_Value"]
+    #[doc = "1: Значение из DAC_VALUE передано в ЦАП, возможна запись следующего значения"]
     Empty = 1,
 }
 impl From<EmptyRead> for bool {
@@ -183,7 +183,7 @@ impl From<EmptyRead> for bool {
         variant as u8 != 0
     }
 }
-#[doc = "Field `EMPTY_READ` reader - Признак заполненности регистра DAC_VALUE"]
+#[doc = "Field `EMPTY_READ` reader - Состояние входного регистра DAC_VALUE. Сбрасывается в 0 при записи нового значения в DAC_VALUE."]
 pub type EmptyReadR = crate::BitReader<EmptyRead>;
 impl EmptyReadR {
     #[doc = "Get enumerated values variant"]
@@ -194,12 +194,12 @@ impl EmptyReadR {
             true => EmptyRead::Empty,
         }
     }
-    #[doc = "Значение, хранящееся в DAC_VALUE было сдвинуто в ЦАП, возможна запись следующего значения"]
+    #[doc = "В DAC_VALUE находится необработанное значение"]
     #[inline(always)]
     pub fn is_full(&self) -> bool {
         *self == EmptyRead::Full
     }
-    #[doc = "В регистре DAC_Value находится необработанное значение. Автоматически сбрасывается при записи в DAC_Value"]
+    #[doc = "Значение из DAC_VALUE передано в ЦАП, возможна запись следующего значения"]
     #[inline(always)]
     pub fn is_empty(&self) -> bool {
         *self == EmptyRead::Empty
@@ -231,7 +231,7 @@ impl R {
     pub fn extpad(&self) -> ExtpadR {
         ExtpadR::new(((self.bits >> 11) & 1) != 0)
     }
-    #[doc = "Bit 13 - Признак заполненности регистра DAC_VALUE"]
+    #[doc = "Bit 13 - Состояние входного регистра DAC_VALUE. Сбрасывается в 0 при записи нового значения в DAC_VALUE."]
     #[inline(always)]
     pub fn empty_read(&self) -> EmptyReadR {
         EmptyReadR::new(((self.bits >> 13) & 1) != 0)

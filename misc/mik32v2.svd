@@ -23188,18 +23188,25 @@ Mux_7 – [31:28]</description>
           <fields>
             <field>
               <name>EMPTY_READ</name>
-              <description>Признак заполненности регистра DAC_VALUE</description>
+              <description>
+                Состояние входного регистра DAC_VALUE.
+                Сбрасывается в 0 при записи нового значения в DAC_VALUE.
+              </description>
               <bitRange>[13:13]</bitRange>
               <access>read-only</access>
               <enumeratedValues>
                 <enumeratedValue>
                   <name>Full</name>
-                  <description>Значение, хранящееся в DAC_VALUE было сдвинуто в ЦАП, возможна запись следующего значения</description>
+                  <description>
+                    В DAC_VALUE находится необработанное значение
+                  </description>
                   <value>0b00</value>
                 </enumeratedValue>
                 <enumeratedValue>
                   <name>Empty</name>
-                  <description>В регистре DAC_Value находится необработанное значение. Автоматически сбрасывается при записи в DAC_Value</description>
+                  <description>
+                    Значение из DAC_VALUE передано в ЦАП, возможна запись следующего значения
+                  </description>
                   <value>0b01</value>
                 </enumeratedValue>
               </enumeratedValues>
