@@ -2,64 +2,40 @@
 pub type R = crate::R<CtrlSpec>;
 #[doc = "Register `CTRL` writer"]
 pub type W = crate::W<CtrlSpec>;
-#[doc = "Инверсия контрольной суммы. Некоторые протоколы подсчета контрольной суммы требуют инверсии вычисленного значения контрольной суммы (выполняется операция XOR со значением 0xFFFFFFFF)\n\nValue on reset: 0"]
+#[doc = "Бит занятости автомата. После записи в регистр данных слова для вычисления контрольной суммы бит занятости перейдет в состояние единицы через один такт после такта записи. То есть чтение регистра управления, идущее на шине AHB сразу на следующем такте после записи данных, вернет результат с нулевым (еще не обновленным) значением бита Busy\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-#[repr(u8)]
-pub enum Fxor {
-    #[doc = "0: Инверсия выключена"]
-    InversionDisable = 0,
-    #[doc = "1: Инверсия включена (операция XOR выполняется)"]
-    InversionEnable = 1,
+pub enum Busy {
+    #[doc = "0: Автомат закончил вычисления"]
+    Ready = 0,
+    #[doc = "1: Автомат занят"]
+    Busy = 1,
 }
-impl From<Fxor> for u8 {
+impl From<Busy> for bool {
     #[inline(always)]
-    fn from(variant: Fxor) -> Self {
-        variant as _
+    fn from(variant: Busy) -> Self {
+        variant as u8 != 0
     }
 }
-impl crate::FieldSpec for Fxor {
-    type Ux = u8;
-}
-impl crate::IsEnum for Fxor {}
-#[doc = "Field `FXOR` reader - Инверсия контрольной суммы. Некоторые протоколы подсчета контрольной суммы требуют инверсии вычисленного значения контрольной суммы (выполняется операция XOR со значением 0xFFFFFFFF)"]
-pub type FxorR = crate::FieldReader<Fxor>;
-impl FxorR {
+#[doc = "Field `Busy` reader - Бит занятости автомата. После записи в регистр данных слова для вычисления контрольной суммы бит занятости перейдет в состояние единицы через один такт после такта записи. То есть чтение регистра управления, идущее на шине AHB сразу на следующем такте после записи данных, вернет результат с нулевым (еще не обновленным) значением бита Busy"]
+pub type BusyR = crate::BitReader<Busy>;
+impl BusyR {
     #[doc = "Get enumerated values variant"]
     #[inline(always)]
-    pub const fn variant(&self) -> Option<Fxor> {
+    pub const fn variant(&self) -> Busy {
         match self.bits {
-            0 => Some(Fxor::InversionDisable),
-            1 => Some(Fxor::InversionEnable),
-            _ => None,
+            false => Busy::Ready,
+            true => Busy::Busy,
         }
     }
-    #[doc = "Инверсия выключена"]
+    #[doc = "Автомат закончил вычисления"]
     #[inline(always)]
-    pub fn is_inversion_disable(&self) -> bool {
-        *self == Fxor::InversionDisable
+    pub fn is_ready(&self) -> bool {
+        *self == Busy::Ready
     }
-    #[doc = "Инверсия включена (операция XOR выполняется)"]
+    #[doc = "Автомат занят"]
     #[inline(always)]
-    pub fn is_inversion_enable(&self) -> bool {
-        *self == Fxor::InversionEnable
-    }
-}
-#[doc = "Field `FXOR` writer - Инверсия контрольной суммы. Некоторые протоколы подсчета контрольной суммы требуют инверсии вычисленного значения контрольной суммы (выполняется операция XOR со значением 0xFFFFFFFF)"]
-pub type FxorW<'a, REG> = crate::FieldWriter<'a, REG, 2, Fxor>;
-impl<'a, REG> FxorW<'a, REG>
-where
-    REG: crate::Writable + crate::RegisterSpec,
-    REG::Ux: From<u8>,
-{
-    #[doc = "Инверсия выключена"]
-    #[inline(always)]
-    pub fn inversion_disable(self) -> &'a mut crate::W<REG> {
-        self.variant(Fxor::InversionDisable)
-    }
-    #[doc = "Инверсия включена (операция XOR выполняется)"]
-    #[inline(always)]
-    pub fn inversion_enable(self) -> &'a mut crate::W<REG> {
-        self.variant(Fxor::InversionEnable)
+    pub fn is_busy(&self) -> bool {
+        *self == Busy::Busy
     }
 }
 #[doc = "Назначение регистра данных\n\nValue on reset: 0"]
@@ -115,40 +91,57 @@ where
         self.variant(Was::InitData)
     }
 }
-#[doc = "Бит занятости автомата. После записи в регистр данных слова для вычисления контрольной суммы бит занятости перейдет в состояние единицы через один такт после такта записи. То есть чтение регистра управления, идущее на шине AHB сразу на следующем такте после записи данных, вернет результат с нулевым (еще не обновленным) значением бита Busy\n\nValue on reset: 0"]
+#[doc = "Инверсия контрольной суммы. Некоторые протоколы подсчета контрольной суммы требуют инверсии вычисленного значения контрольной суммы (выполняется операция XOR со значением 0xFFFFFFFF)\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum Busy {
-    #[doc = "0: Автомат закончил вычисления"]
-    Ready = 0,
-    #[doc = "1: Автомат занят"]
-    Busy = 1,
+pub enum Fxor {
+    #[doc = "0: Инверсия выключена"]
+    InversionDisable = 0,
+    #[doc = "1: Инверсия включена (операция XOR выполняется)"]
+    InversionEnable = 1,
 }
-impl From<Busy> for bool {
+impl From<Fxor> for bool {
     #[inline(always)]
-    fn from(variant: Busy) -> Self {
+    fn from(variant: Fxor) -> Self {
         variant as u8 != 0
     }
 }
-#[doc = "Field `Busy` reader - Бит занятости автомата. После записи в регистр данных слова для вычисления контрольной суммы бит занятости перейдет в состояние единицы через один такт после такта записи. То есть чтение регистра управления, идущее на шине AHB сразу на следующем такте после записи данных, вернет результат с нулевым (еще не обновленным) значением бита Busy"]
-pub type BusyR = crate::BitReader<Busy>;
-impl BusyR {
+#[doc = "Field `FXOR` reader - Инверсия контрольной суммы. Некоторые протоколы подсчета контрольной суммы требуют инверсии вычисленного значения контрольной суммы (выполняется операция XOR со значением 0xFFFFFFFF)"]
+pub type FxorR = crate::BitReader<Fxor>;
+impl FxorR {
     #[doc = "Get enumerated values variant"]
     #[inline(always)]
-    pub const fn variant(&self) -> Busy {
+    pub const fn variant(&self) -> Fxor {
         match self.bits {
-            false => Busy::Ready,
-            true => Busy::Busy,
+            false => Fxor::InversionDisable,
+            true => Fxor::InversionEnable,
         }
     }
-    #[doc = "Автомат закончил вычисления"]
+    #[doc = "Инверсия выключена"]
     #[inline(always)]
-    pub fn is_ready(&self) -> bool {
-        *self == Busy::Ready
+    pub fn is_inversion_disable(&self) -> bool {
+        *self == Fxor::InversionDisable
     }
-    #[doc = "Автомат занят"]
+    #[doc = "Инверсия включена (операция XOR выполняется)"]
     #[inline(always)]
-    pub fn is_busy(&self) -> bool {
-        *self == Busy::Busy
+    pub fn is_inversion_enable(&self) -> bool {
+        *self == Fxor::InversionEnable
+    }
+}
+#[doc = "Field `FXOR` writer - Инверсия контрольной суммы. Некоторые протоколы подсчета контрольной суммы требуют инверсии вычисленного значения контрольной суммы (выполняется операция XOR со значением 0xFFFFFFFF)"]
+pub type FxorW<'a, REG> = crate::BitWriter<'a, REG, Fxor>;
+impl<'a, REG> FxorW<'a, REG>
+where
+    REG: crate::Writable + crate::RegisterSpec,
+{
+    #[doc = "Инверсия выключена"]
+    #[inline(always)]
+    pub fn inversion_disable(self) -> &'a mut crate::W<REG> {
+        self.variant(Fxor::InversionDisable)
+    }
+    #[doc = "Инверсия включена (операция XOR выполняется)"]
+    #[inline(always)]
+    pub fn inversion_enable(self) -> &'a mut crate::W<REG> {
+        self.variant(Fxor::InversionEnable)
     }
 }
 #[doc = "Перестановки битов/байтов выходных данных\n\nValue on reset: 0"]
@@ -324,20 +317,20 @@ where
     }
 }
 impl R {
-    #[doc = "Bits 1:2 - Инверсия контрольной суммы. Некоторые протоколы подсчета контрольной суммы требуют инверсии вычисленного значения контрольной суммы (выполняется операция XOR со значением 0xFFFFFFFF)"]
+    #[doc = "Bit 0 - Бит занятости автомата. После записи в регистр данных слова для вычисления контрольной суммы бит занятости перейдет в состояние единицы через один такт после такта записи. То есть чтение регистра управления, идущее на шине AHB сразу на следующем такте после записи данных, вернет результат с нулевым (еще не обновленным) значением бита Busy"]
     #[inline(always)]
-    pub fn fxor(&self) -> FxorR {
-        FxorR::new(((self.bits >> 1) & 3) as u8)
+    pub fn busy(&self) -> BusyR {
+        BusyR::new((self.bits & 1) != 0)
     }
     #[doc = "Bit 25 - Назначение регистра данных"]
     #[inline(always)]
     pub fn was(&self) -> WasR {
         WasR::new(((self.bits >> 25) & 1) != 0)
     }
-    #[doc = "Bit 25 - Бит занятости автомата. После записи в регистр данных слова для вычисления контрольной суммы бит занятости перейдет в состояние единицы через один такт после такта записи. То есть чтение регистра управления, идущее на шине AHB сразу на следующем такте после записи данных, вернет результат с нулевым (еще не обновленным) значением бита Busy"]
+    #[doc = "Bit 26 - Инверсия контрольной суммы. Некоторые протоколы подсчета контрольной суммы требуют инверсии вычисленного значения контрольной суммы (выполняется операция XOR со значением 0xFFFFFFFF)"]
     #[inline(always)]
-    pub fn busy(&self) -> BusyR {
-        BusyR::new(((self.bits >> 25) & 1) != 0)
+    pub fn fxor(&self) -> FxorR {
+        FxorR::new(((self.bits >> 26) & 1) != 0)
     }
     #[doc = "Bits 28:29 - Перестановки битов/байтов выходных данных"]
     #[inline(always)]
@@ -351,15 +344,15 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bits 1:2 - Инверсия контрольной суммы. Некоторые протоколы подсчета контрольной суммы требуют инверсии вычисленного значения контрольной суммы (выполняется операция XOR со значением 0xFFFFFFFF)"]
-    #[inline(always)]
-    pub fn fxor(&mut self) -> FxorW<'_, CtrlSpec> {
-        FxorW::new(self, 1)
-    }
     #[doc = "Bit 25 - Назначение регистра данных"]
     #[inline(always)]
     pub fn was(&mut self) -> WasW<'_, CtrlSpec> {
         WasW::new(self, 25)
+    }
+    #[doc = "Bit 26 - Инверсия контрольной суммы. Некоторые протоколы подсчета контрольной суммы требуют инверсии вычисленного значения контрольной суммы (выполняется операция XOR со значением 0xFFFFFFFF)"]
+    #[inline(always)]
+    pub fn fxor(&mut self) -> FxorW<'_, CtrlSpec> {
+        FxorW::new(self, 26)
     }
     #[doc = "Bits 28:29 - Перестановки битов/байтов выходных данных"]
     #[inline(always)]

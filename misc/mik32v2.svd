@@ -12977,7 +12977,7 @@ FSPIFI_SCK = FHCLK / 2^(SCK_DIV+1)</description>
               <name>FXOR</name>
               <description>Инверсия контрольной суммы.
 Некоторые протоколы подсчета контрольной суммы требуют инверсии вычисленного значения контрольной суммы (выполняется операция XOR со значением 0xFFFFFFFF)</description>
-              <bitRange>[2:1]</bitRange>
+              <bitRange>[26:26]</bitRange>
               <access>read-write</access>
               <enumeratedValues>
                 <enumeratedValue>
@@ -13014,7 +13014,7 @@ FSPIFI_SCK = FHCLK / 2^(SCK_DIV+1)</description>
               <name>Busy</name>
               <description>Бит занятости автомата.
 После записи в регистр данных слова для вычисления контрольной суммы бит занятости перейдет в состояние единицы через один такт после такта записи. То есть чтение регистра управления, идущее на шине AHB сразу на следующем такте после записи данных, вернет результат с нулевым (еще не обновленным) значением бита Busy</description>
-              <bitRange>[25:25]</bitRange>
+              <bitRange>[0:0]</bitRange>
               <access>read-only</access>
               <enumeratedValues>
                 <enumeratedValue>
