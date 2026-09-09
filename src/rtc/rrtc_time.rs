@@ -2,6 +2,10 @@
 pub type R = crate::R<RrtcTimeSpec>;
 #[doc = "Register `RRTC_TIME` writer"]
 pub type W = crate::W<RrtcTimeSpec>;
+#[doc = "Field `TOS` reader - Поле десятых долей секунды. Допустимые значения от 0 до 9"]
+pub type TosR = crate::FieldReader;
+#[doc = "Field `TOS` writer - Поле десятых долей секунды. Допустимые значения от 0 до 9"]
+pub type TosW<'a, REG> = crate::FieldWriter<'a, REG, 4>;
 #[doc = "Field `S` reader - Поле единиц секунд. Допустимые значения от 0 до 9"]
 pub type SR = crate::FieldReader;
 #[doc = "Field `S` writer - Поле единиц секунд. Допустимые значения от 0 до 9"]
@@ -152,6 +156,11 @@ where
     }
 }
 impl R {
+    #[doc = "Bits 0:3 - Поле десятых долей секунды. Допустимые значения от 0 до 9"]
+    #[inline(always)]
+    pub fn tos(&self) -> TosR {
+        TosR::new((self.bits & 0x0f) as u8)
+    }
     #[doc = "Bits 4:7 - Поле единиц секунд. Допустимые значения от 0 до 9"]
     #[inline(always)]
     pub fn s(&self) -> SR {
@@ -189,6 +198,11 @@ impl R {
     }
 }
 impl W {
+    #[doc = "Bits 0:3 - Поле десятых долей секунды. Допустимые значения от 0 до 9"]
+    #[inline(always)]
+    pub fn tos(&mut self) -> TosW<'_, RrtcTimeSpec> {
+        TosW::new(self, 0)
+    }
     #[doc = "Bits 4:7 - Поле единиц секунд. Допустимые значения от 0 до 9"]
     #[inline(always)]
     pub fn s(&mut self) -> SW<'_, RrtcTimeSpec> {

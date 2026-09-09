@@ -22,10 +22,6 @@ pub type TmW<'a, REG> = crate::BitWriter<'a, REG>;
 pub type YR = crate::FieldReader;
 #[doc = "Field `Y` writer - Поле единиц годов. Допустимые значения от 0 до 9"]
 pub type YW<'a, REG> = crate::FieldWriter<'a, REG, 4>;
-#[doc = "Field `TC` reader - Поле десятков веков. Допустимые значения от 0 до 9"]
-pub type TcR = crate::FieldReader<u16>;
-#[doc = "Field `TC` writer - Поле десятков веков. Допустимые значения от 0 до 9"]
-pub type TcW<'a, REG> = crate::FieldWriter<'a, REG, 14, u16>;
 #[doc = "Field `TY` reader - Поле десятков годов. Допустимые значения от 0 до 9"]
 pub type TyR = crate::FieldReader;
 #[doc = "Field `TY` writer - Поле десятков годов. Допустимые значения от 0 до 9"]
@@ -34,6 +30,10 @@ pub type TyW<'a, REG> = crate::FieldWriter<'a, REG, 4>;
 pub type CR = crate::FieldReader;
 #[doc = "Field `C` writer - Поле единиц веков. Допустимые значения от 0 до 9"]
 pub type CW<'a, REG> = crate::FieldWriter<'a, REG, 4>;
+#[doc = "Field `TC` reader - Поле десятков веков. Допустимые значения от 0 до 9"]
+pub type TcR = crate::FieldReader;
+#[doc = "Field `TC` writer - Поле десятков веков. Допустимые значения от 0 до 9"]
+pub type TcW<'a, REG> = crate::FieldWriter<'a, REG, 4>;
 impl R {
     #[doc = "Bits 0:3 - Поле единиц дней. Допустимые значения: - TD = 2 - от 0 до 3; - TD = 3 - от 0 до 1"]
     #[inline(always)]
@@ -60,11 +60,6 @@ impl R {
     pub fn y(&self) -> YR {
         YR::new(((self.bits >> 11) & 0x0f) as u8)
     }
-    #[doc = "Bits 13:26 - Поле десятков веков. Допустимые значения от 0 до 9"]
-    #[inline(always)]
-    pub fn tc(&self) -> TcR {
-        TcR::new(((self.bits >> 13) & 0x3fff) as u16)
-    }
     #[doc = "Bits 15:18 - Поле десятков годов. Допустимые значения от 0 до 9"]
     #[inline(always)]
     pub fn ty(&self) -> TyR {
@@ -74,6 +69,11 @@ impl R {
     #[inline(always)]
     pub fn c(&self) -> CR {
         CR::new(((self.bits >> 19) & 0x0f) as u8)
+    }
+    #[doc = "Bits 23:26 - Поле десятков веков. Допустимые значения от 0 до 9"]
+    #[inline(always)]
+    pub fn tc(&self) -> TcR {
+        TcR::new(((self.bits >> 23) & 0x0f) as u8)
     }
 }
 impl W {
@@ -102,11 +102,6 @@ impl W {
     pub fn y(&mut self) -> YW<'_, RrtcDateSpec> {
         YW::new(self, 11)
     }
-    #[doc = "Bits 13:26 - Поле десятков веков. Допустимые значения от 0 до 9"]
-    #[inline(always)]
-    pub fn tc(&mut self) -> TcW<'_, RrtcDateSpec> {
-        TcW::new(self, 13)
-    }
     #[doc = "Bits 15:18 - Поле десятков годов. Допустимые значения от 0 до 9"]
     #[inline(always)]
     pub fn ty(&mut self) -> TyW<'_, RrtcDateSpec> {
@@ -116,6 +111,11 @@ impl W {
     #[inline(always)]
     pub fn c(&mut self) -> CW<'_, RrtcDateSpec> {
         CW::new(self, 19)
+    }
+    #[doc = "Bits 23:26 - Поле десятков веков. Допустимые значения от 0 до 9"]
+    #[inline(always)]
+    pub fn tc(&mut self) -> TcW<'_, RrtcDateSpec> {
+        TcW::new(self, 23)
     }
 }
 #[doc = "Регистр установки даты. Используется BCD-кодировка\n\nYou can [`read`](crate::Reg::read) this register and get [`rrtc_date::R`](R). You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`rrtc_date::W`](W). You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api)."]

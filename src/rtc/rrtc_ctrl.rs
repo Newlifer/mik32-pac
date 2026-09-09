@@ -2,28 +2,28 @@
 pub type R = crate::R<RrtcCtrlSpec>;
 #[doc = "Register `RRTC_CTRL` writer"]
 pub type W = crate::W<RrtcCtrlSpec>;
-#[doc = "Запись “1” – сброс признака установки активного уровня ALARM_PAD\n\nValue on reset: 0"]
+#[doc = "Запись 1 сбрасывает строб будильника\n\nValue on reset: 0"]
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
-pub enum AlrmPad {
-    #[doc = "1: Cброс признака установки активного уровня ALARM_PAD"]
-    AlarmReset = 1,
+pub enum ResetStrobe {
+    #[doc = "1: Сброс строба будильника"]
+    Reset = 1,
 }
-impl From<AlrmPad> for bool {
+impl From<ResetStrobe> for bool {
     #[inline(always)]
-    fn from(variant: AlrmPad) -> Self {
+    fn from(variant: ResetStrobe) -> Self {
         variant as u8 != 0
     }
 }
-#[doc = "Field `ALRM_PAD` writer - Запись “1” – сброс признака установки активного уровня ALARM_PAD"]
-pub type AlrmPadW<'a, REG> = crate::BitWriter<'a, REG, AlrmPad>;
-impl<'a, REG> AlrmPadW<'a, REG>
+#[doc = "Field `RESET_STROBE` writer - Запись 1 сбрасывает строб будильника"]
+pub type ResetStrobeW<'a, REG> = crate::BitWriter<'a, REG, ResetStrobe>;
+impl<'a, REG> ResetStrobeW<'a, REG>
 where
     REG: crate::Writable + crate::RegisterSpec,
 {
-    #[doc = "Cброс признака установки активного уровня ALARM_PAD"]
+    #[doc = "Сброс строба будильника"]
     #[inline(always)]
-    pub fn alarm_reset(self) -> &'a mut crate::W<REG> {
-        self.variant(AlrmPad::AlarmReset)
+    pub fn reset(self) -> &'a mut crate::W<REG> {
+        self.variant(ResetStrobe::Reset)
     }
 }
 #[doc = "Сигнал проведения синхронизации между тактовыми доменами. После записи в любой регистр и пока данный бит читается равным «1», запрещено выполнять любую новую запись\n\nValue on reset: 0"]
@@ -244,10 +244,10 @@ impl R {
     }
 }
 impl W {
-    #[doc = "Bit 27 - Запись “1” – сброс признака установки активного уровня ALARM_PAD"]
+    #[doc = "Bit 27 - Запись 1 сбрасывает строб будильника"]
     #[inline(always)]
-    pub fn alrm_pad(&mut self) -> AlrmPadW<'_, RrtcCtrlSpec> {
-        AlrmPadW::new(self, 27)
+    pub fn reset_strobe(&mut self) -> ResetStrobeW<'_, RrtcCtrlSpec> {
+        ResetStrobeW::new(self, 27)
     }
     #[doc = "Bit 29 - Бит разрешения прерывания на выходах irq и irq_async. Прерывания появляются при наличии установленного бита ALRM"]
     #[inline(always)]

@@ -125,7 +125,7 @@ impl RegisterBlock {
     pub const fn rrtc_reg14(&self) -> &RrtcReg14 {
         &self.rrtc_reg14
     }
-    #[doc = "0x5c - Регистры общего назначения REG14"]
+    #[doc = "0x5c - Регистры общего назначения REG15"]
     #[inline(always)]
     pub const fn rrtc_reg15(&self) -> &RrtcReg15 {
         &self.rrtc_reg15
@@ -231,8 +231,8 @@ pub mod rrtc_reg13;
 pub type RrtcReg14 = crate::Reg<rrtc_reg14::RrtcReg14Spec>;
 #[doc = "Регистры общего назначения REG14"]
 pub mod rrtc_reg14;
-#[doc = "RRTC_REG15 (rw) register accessor: Регистры общего назначения REG14\n\nYou can [`read`](crate::Reg::read) this register and get [`rrtc_reg15::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`rrtc_reg15::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [`mod@rrtc_reg15`] module"]
+#[doc = "RRTC_REG15 (rw) register accessor: Регистры общего назначения REG15\n\nYou can [`read`](crate::Reg::read) this register and get [`rrtc_reg15::R`]. You can [`reset`](crate::Reg::reset), [`write`](crate::Reg::write), [`write_with_zero`](crate::Reg::write_with_zero) this register using [`rrtc_reg15::W`]. You can also [`modify`](crate::Reg::modify) this register. See [API](https://docs.rs/svd2rust/#read--modify--write-api).\n\nFor information about available fields see [`mod@rrtc_reg15`] module"]
 #[doc(alias = "RRTC_REG15")]
 pub type RrtcReg15 = crate::Reg<rrtc_reg15::RrtcReg15Spec>;
-#[doc = "Регистры общего назначения REG14"]
+#[doc = "Регистры общего назначения REG15"]
 pub mod rrtc_reg15;

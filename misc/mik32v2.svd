@@ -10909,6 +10909,18 @@ N_W = 50000000 нс/Pclk, где Pclk – период тактового сиг
           <resetMask>0xFFFFFFFF</resetMask>
           <fields>
             <field>
+              <name>TOS</name>
+              <description>Поле десятых долей секунды. Допустимые значения от 0 до 9</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>9</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
               <name>S</name>
               <description>Поле единиц секунд. Допустимые значения от 0 до 9</description>
               <bitRange>[7:4]</bitRange>
@@ -11141,7 +11153,7 @@ N_W = 50000000 нс/Pclk, где Pclk – период тактового сиг
               <name>TC</name>
               <description>Поле десятков веков. Допустимые значения от 0 до 9
               </description>
-              <bitRange>[26:13]</bitRange>
+              <bitRange>[26:23]</bitRange>
               <access>read-write</access>
               <writeConstraint>
                 <range>
@@ -11162,6 +11174,156 @@ N_W = 50000000 нс/Pclk, где Pclk – период тактового сиг
           <resetValue>0x00000000</resetValue>
           <resetMask>0xFFFFFFFF</resetMask>
           <fields>
+            <field>
+              <name>TOS</name>
+              <description>Поле десятых долей секунды. Допустимые значения от 0 до 9</description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>9</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>S</name>
+              <description>Поле единиц секунд. Допустимые значения от 0 до 9</description>
+              <bitRange>[7:4]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>9</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>TS</name>
+              <description>Поле десятков секунд. Допустимые значения от 0 до 5</description>
+              <bitRange>[10:8]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>5</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>M</name>
+              <description>Поле единиц минут. Допустимые значения от 0 до 9</description>
+              <bitRange>[14:11]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>9</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>TM</name>
+              <description>Поле десятков минут. Допустимые значения от 0 до 5</description>
+              <bitRange>[17:15]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>5</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>H</name>
+              <description>Поле единиц часов. Допустимые значения:
+                - TH = 0 - От 0 до 9;
+                - TH = 2 - От 0 до 3 </description>
+              <bitRange>[21:18]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>9</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>TH</name>
+              <description>Поле десятков часов. Доступные значения от 0 до 2</description>
+              <bitRange>[23:22]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>2</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>DOW</name>
+              <description>День недели
+              </description>
+              <bitRange>[26:24]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <name>DayOfWeek</name>
+                <usage>read-write</usage>
+                <enumeratedValue>
+                  <name>Monday</name>
+                  <description>Понедельник</description>
+                  <value>0b001</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Tuesday</name>
+                  <description>Вторник</description>
+                  <value>0b010</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Wednesday</name>
+                  <description>Среда</description>
+                  <value>0b011</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Thursday</name>
+                  <description>Четверг</description>
+                  <value>0b100</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Friday</name>
+                  <description>Пятница</description>
+                  <value>0b101</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Saturday</name>
+                  <description>Суббота</description>
+                  <value>0b110</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>Sunday</name>
+                  <description>Воскресенье</description>
+                  <value>0b111</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
+            <field>
+              <name>CTOS</name>
+              <description>Разрешает сравнение десятых долей секунды, когда установлен</description>
+              <bitRange>[27:27]</bitRange>
+              <access>read-write</access>
+              <enumeratedValues>
+                <enumeratedValue>
+                  <name>disabled</name>
+                  <description>Сравнение десятых долей секунды отключено</description>
+                  <value>0</value>
+                </enumeratedValue>
+                <enumeratedValue>
+                  <name>enable</name>
+                  <description>Сравнение десятых долей секунды включено</description>
+                  <value>1</value>
+                </enumeratedValue>
+              </enumeratedValues>
+            </field>
             <field>
               <name>CS</name>
               <description>Разрешает сравнения секунд, когда установлен
@@ -11251,6 +11413,118 @@ N_W = 50000000 нс/Pclk, где Pclk – период тактового сиг
           <resetMask>0xFFFFFFFF</resetMask>
           <fields>
             <field>
+              <name>D</name>
+              <description>Поле единиц дней. Допустимые
+                значения:
+                - TD = 2 - от 0 до 3;
+                - TD = 3 - от 0 до 1
+              </description>
+              <bitRange>[3:0]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>3</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>TD</name>
+              <description>Поле десятков дней. Допустимые
+                значения:
+                - {TM,M} != 03 - от 0 до 3;
+                - {TM,M} == 03 - от 0 до 2
+              </description>
+              <bitRange>[5:4]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>3</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>M</name>
+              <description>Поле единиц месяцев. Допустимые значения:
+                - TM = 0 - от 0 до 9;
+                - TM = 1 - от 0 до 2
+              </description>
+              <bitRange>[9:6]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>9</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>TM</name>
+              <description>Поле десятков месяцев. Допустимые значения от 0 до 1
+              </description>
+              <bitRange>[10:10]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>1</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>Y</name>
+              <description>Поле единиц годов. Допустимые значения от 0 до 9
+              </description>
+              <bitRange>[14:11]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>9</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>TY</name>
+              <description>Поле десятков годов. Допустимые значения от 0 до 9
+              </description>
+              <bitRange>[18:15]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>9</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>C</name>
+              <description>Поле единиц веков. Допустимые значения от 0 до 9
+              </description>
+              <bitRange>[22:19]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>9</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
+              <name>TC</name>
+              <description>Поле десятков веков. Допустимые значения от 0 до 9
+              </description>
+              <bitRange>[26:23]</bitRange>
+              <access>read-write</access>
+              <writeConstraint>
+                <range>
+                  <minimum>0</minimum>
+                  <maximum>9</maximum>
+                </range>
+              </writeConstraint>
+            </field>
+            <field>
               <name>CD</name>
               <description>Разрешает сравнения дней, когда установлен
               </description>
@@ -11338,14 +11612,14 @@ N_W = 50000000 нс/Pclk, где Pclk – период тактового сиг
           <resetMask>0xFFFFFFFF</resetMask>
           <fields>
             <field>
-              <name>ALRM_PAD</name>
-              <description>Запись “1” – сброс признака установки активного уровня ALARM_PAD</description>
+              <name>RESET_STROBE</name>
+              <description>Запись 1 сбрасывает строб будильника</description>
               <bitRange>[27:27]</bitRange>
               <access>write-only</access>
               <enumeratedValues>
                 <enumeratedValue>
-                  <name>Alarm_reset</name>
-                  <description>Cброс признака установки активного уровня ALARM_PAD</description>
+                  <name>Reset</name>
+                  <description>Сброс строба будильника</description>
                   <value>1</value>
                 </enumeratedValue>
               </enumeratedValues>
@@ -11555,7 +11829,7 @@ N_W = 50000000 нс/Pclk, где Pclk – период тактового сиг
         </register>
         <register>
           <name>RRTC_REG15</name>
-          <description>Регистры общего назначения REG14</description>
+          <description>Регистры общего назначения REG15</description>
           <addressOffset>0x5C</addressOffset>
           <access>read-write</access>
           <resetValue>0x00000000</resetValue>
