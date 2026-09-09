@@ -10,7 +10,7 @@ get-tools:
 # Command to build the project
 build:
     echo "Building the project..."
-    svd2rust -i ./misc/mik32v2.svd --target riscv
+    svd2rust -i ./misc/mik32v2.svd --target riscv --edition=2024
     form -i ./lib.rs -o ./src/
     cargo fmt
     rm lib.rs

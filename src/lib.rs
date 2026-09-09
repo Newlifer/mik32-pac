@@ -8,7 +8,7 @@ use generic::*;
 #[doc = r"Common register and bit access and modify traits"]
 pub mod generic;
 #[cfg(feature = "rt")]
-extern "C" {}
+unsafe extern "C" {}
 #[doc(hidden)]
 #[repr(C)]
 pub union Vector {
@@ -17,7 +17,7 @@ pub union Vector {
 }
 #[cfg(feature = "rt")]
 #[doc(hidden)]
-#[no_mangle]
+#[unsafe(no_mangle)]
 pub static __EXTERNAL_INTERRUPTS: [Vector; 0] = [];
 #[doc = "Прямой доступ к памяти"]
 pub type Dma = crate::Periph<dma::RegisterBlock, 0x0004_0000>;
@@ -361,7 +361,7 @@ impl core::fmt::Debug for Scr1Timer {
 }
 #[doc = "Регистры системного таймера"]
 pub mod scr1_timer;
-#[no_mangle]
+#[unsafe(no_mangle)]
 static mut DEVICE_PERIPHERALS: bool = false;
 #[doc = r" All the peripherals."]
 #[allow(non_snake_case)]
@@ -462,46 +462,46 @@ impl Peripherals {
     #[doc = r" Each of the returned peripherals must be used at most once."]
     #[inline]
     pub unsafe fn steal() -> Self {
-        DEVICE_PERIPHERALS = true;
+        unsafe { DEVICE_PERIPHERALS = true }
         Peripherals {
-            dma: Dma::steal(),
-            pm: Pm::steal(),
-            epic: Epic::steal(),
-            timer32_0: Timer32_0::steal(),
-            pvd_vcc: PvdVcc::steal(),
-            pad_config: PadConfig::steal(),
-            wdt_bus: WdtBus::steal(),
-            otp: Otp::steal(),
-            wake_up: WakeUp::steal(),
-            rtc: Rtc::steal(),
-            boot_manager: BootManager::steal(),
-            spifi_config: SpifiConfig::steal(),
-            eeprom_regs: EepromRegs::steal(),
-            crypto: Crypto::steal(),
-            crc: Crc::steal(),
-            wdt: Wdt::steal(),
-            usart_0: Usart0::steal(),
-            usart_1: Usart1::steal(),
-            timer16_0: Timer16_0::steal(),
-            timer16_1: Timer16_1::steal(),
-            timer16_2: Timer16_2::steal(),
-            timer32_1: Timer32_1::steal(),
-            timer32_2: Timer32_2::steal(),
-            spi_0: Spi0::steal(),
-            spi_1: Spi1::steal(),
-            i2c_0: I2c0::steal(),
-            i2c_1: I2c1::steal(),
-            gpio16_0: Gpio16_0::steal(),
-            gpio16_1: Gpio16_1::steal(),
-            gpio8_2: Gpio8_2::steal(),
-            gpio_irq: GpioIrq::steal(),
-            dac0: Dac0::steal(),
-            dac1: Dac1::steal(),
-            pvd_avcc: PvdAvcc::steal(),
-            tsens: Tsens::steal(),
-            refv_config: RefvConfig::steal(),
-            adc: Adc::steal(),
-            scr1_timer: Scr1Timer::steal(),
+            dma: unsafe { Dma::steal() },
+            pm: unsafe { Pm::steal() },
+            epic: unsafe { Epic::steal() },
+            timer32_0: unsafe { Timer32_0::steal() },
+            pvd_vcc: unsafe { PvdVcc::steal() },
+            pad_config: unsafe { PadConfig::steal() },
+            wdt_bus: unsafe { WdtBus::steal() },
+            otp: unsafe { Otp::steal() },
+            wake_up: unsafe { WakeUp::steal() },
+            rtc: unsafe { Rtc::steal() },
+            boot_manager: unsafe { BootManager::steal() },
+            spifi_config: unsafe { SpifiConfig::steal() },
+            eeprom_regs: unsafe { EepromRegs::steal() },
+            crypto: unsafe { Crypto::steal() },
+            crc: unsafe { Crc::steal() },
+            wdt: unsafe { Wdt::steal() },
+            usart_0: unsafe { Usart0::steal() },
+            usart_1: unsafe { Usart1::steal() },
+            timer16_0: unsafe { Timer16_0::steal() },
+            timer16_1: unsafe { Timer16_1::steal() },
+            timer16_2: unsafe { Timer16_2::steal() },
+            timer32_1: unsafe { Timer32_1::steal() },
+            timer32_2: unsafe { Timer32_2::steal() },
+            spi_0: unsafe { Spi0::steal() },
+            spi_1: unsafe { Spi1::steal() },
+            i2c_0: unsafe { I2c0::steal() },
+            i2c_1: unsafe { I2c1::steal() },
+            gpio16_0: unsafe { Gpio16_0::steal() },
+            gpio16_1: unsafe { Gpio16_1::steal() },
+            gpio8_2: unsafe { Gpio8_2::steal() },
+            gpio_irq: unsafe { GpioIrq::steal() },
+            dac0: unsafe { Dac0::steal() },
+            dac1: unsafe { Dac1::steal() },
+            pvd_avcc: unsafe { PvdAvcc::steal() },
+            tsens: unsafe { Tsens::steal() },
+            refv_config: unsafe { RefvConfig::steal() },
+            adc: unsafe { Adc::steal() },
+            scr1_timer: unsafe { Scr1Timer::steal() },
         }
     }
 }
