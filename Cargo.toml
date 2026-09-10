@@ -1,6 +1,6 @@
 [package]
 name = "mik32-pac"
-version = "1.8.1"
+version = "1.8.2"
 edition = "2024"
 authors = ['Alex Newlifer', 'Aleksandr Novozhilov']
 categories = ["embedded", "hardware-support", "no-std"]

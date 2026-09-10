@@ -6,7 +6,7 @@ pub type W = crate::W<TimerCtrlSpec>;
 #[derive(Clone, Copy, Debug, PartialEq, Eq)]
 pub enum Enable {
     #[doc = "0: Таймер выключен"]
-    Diasable = 0,
+    Disable = 0,
     #[doc = "1: Таймер включен"]
     Enable = 1,
 }
@@ -23,14 +23,14 @@ impl EnableR {
     #[inline(always)]
     pub const fn variant(&self) -> Enable {
         match self.bits {
-            false => Enable::Diasable,
+            false => Enable::Disable,
             true => Enable::Enable,
         }
     }
     #[doc = "Таймер выключен"]
     #[inline(always)]
-    pub fn is_diasable(&self) -> bool {
-        *self == Enable::Diasable
+    pub fn is_disable(&self) -> bool {
+        *self == Enable::Disable
     }
     #[doc = "Таймер включен"]
     #[inline(always)]
@@ -46,8 +46,8 @@ where
 {
     #[doc = "Таймер выключен"]
     #[inline(always)]
-    pub fn diasable(self) -> &'a mut crate::W<REG> {
-        self.variant(Enable::Diasable)
+    pub fn disable(self) -> &'a mut crate::W<REG> {
+        self.variant(Enable::Disable)
     }
     #[doc = "Таймер включен"]
     #[inline(always)]
